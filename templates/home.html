@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}home page{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1>WELCOME YOU</h1>
+        <H3>Life is short. You need Python</H3>
+        <h2>Django makes it easier to build better web apps more quickly and with less code</h2>
+        <img src="{% static 'images/python-django-logo.jpeg' %}" height="400">
+    </div>
+{% endblock %}
