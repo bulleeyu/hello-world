@@ -5,7 +5,7 @@ from .models import ArticleColumn, ArticlePost
 
 def article_titles(request):
     all_articles = ArticlePost.objects.all()
-    paginator = Paginator(all_articles, 2)
+    paginator = Paginator(all_articles, 4)
     page = request.GET.get('page')
     try:
         current_page = paginator.page(page)
