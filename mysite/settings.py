@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog', 'account','article',
+    'blog', 'account', 'article',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-X_FRAME_OPTIONS='SAMEORIGIN'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -121,7 +121,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/account/login/'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_HOST_USER = '295728552@qq.com'
@@ -129,4 +129,9 @@ EMAIL_HOST_PASSWORD = 'oxppoxwnqayqcbci'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = '295728552@qq.com'
-CSRF_COOKIE_HTTPONLY=True
+CSRF_COOKIE_HTTPONLY = True
+
+# Redis settings
+REDIS_HOST = "localhost"
+REDIS_PORT = "6379"
+REDIS_DB = 0

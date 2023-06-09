@@ -1,20 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}articles{% endblock %}
 {% block content %}
+
     <div class="row text-center vertical-middle-sm">
     <h1>阅读，丰富头脑，善化行为</h1>
     </div>
-    <div class="container">
-    {% for article in articles %}
-        <div class="list-group">
-            <a href="{{ article.get_url_path }}" class="list-group-item active">
+<div class="container">
+    <div class="col-md-8">
+        {% for article in articles %}
+            <div class="list-group">
+                <a href="{{ article.get_url_path }}" class="list-group-item active">
                 <h4 class="list-group-item-heading">{{ article.title }}</h4>
-                <p class="list-group-item-text">作者：{{ article.author.username }}</p>
+                </a>
+                <p class="list-group-item-text">作者：<a href="{% url 'article:author_articles' article.author.username %}">{{ article.author.username }}</a></p>
                 <p class="list-group-item-text">概要：{{ article.body|slice:'70'|linebreaks }}</p>
-            </a>
+            </div>
+        {% endfor %}
+        {% include 'paginator.html' %}
 
-        </div>
-    {% endfor %}
-    {% include 'paginator.html' %}
     </div>
+    <div class="col-md-4" >
+        <div>
+            {% if userinfo.photo %}
+                <img src="{{ userinfo.photo | striptags }}" class="img-circle" id="my_photo" name="user_face" style="width: 300px">
+            {% else %}
+                <img src="{% static 'images/ellonmusk.png' %}" class="img-circle" id="my_photo" name="user_face" style="width: 300px">
+            {% endif %}
+        </div>
+        <div>
+            <p>{{ user.username }}</p>
+            {% if userinfo %}
+                <p>{{ userinfo.company }}</p>
+                <p>{{ userinfo.aboutme }}</p>
+            {% else %}
+                <p>这个作者有点忙maybe，什么也没留下</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
