@@ -6,10 +6,9 @@
 
     <div class="row text-center vertical-middle-sm">
     <h1>阅读，丰富头脑，善化行为</h1>
-    <p>这里已经有{%   total_articles %}篇文章供您阅读</p>
     </div>
 <div class="container">
-    <div >
+    <div class="col-md-8">
         {% for article in articles %}
             <div class="list-group">
                 <a href="{{ article.get_url_path }}" class="list-group-item active">
@@ -22,7 +21,25 @@
         {% include 'paginator.html' %}
 
     </div>
-
+    <div class="col-md-4" >
+        <div>
+            {% if userinfo.photo %}
+                <img src="{{ userinfo.photo | striptags }}" class="img-circle" id="my_photo" name="user_face" style="width: 300px">
+            {% else %}
+                <img src="{% static 'images/ellonmusk.png' %}" class="img-circle" id="my_photo" name="user_face" style="width: 300px">
+            {% endif %}
+        </div>
+        <div>
+            <p>{{ user.username }}</p>
+            <p>共发表文章{% author_total_articles user %}篇</p>
+            {% if userinfo %}
+                <p>{{ userinfo.company }}</p>
+                <p>{{ userinfo.aboutme }}</p>
+            {% else %}
+                <p>这个作者有点忙maybe，什么也没留下</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}
