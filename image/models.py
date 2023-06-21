@@ -7,7 +7,8 @@ from slugify import slugify
 
 class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
-    title = models.URLField();
+    title = models.CharField(max_length=300)
+    url = models.URLField()
     slug = models.SlugField(max_length=500, blank=True)
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
